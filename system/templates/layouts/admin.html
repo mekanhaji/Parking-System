@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="bg-light opacity-50 rounded text-center p-2">Hello, {{ current_user.username }}🖐</h2>
+
+<div class="d-grid gap-2">
+    <section id="user-section" class="bg-light opacity-50 rounded p-2 m-1">
+        <h3 class="p-0 m-0">Personal Detail</h3>
+        <hr class="p-0 m-0 pb-1">
+        <p class="text-start">
+            Username : {{ current_user.username }}<br>
+            Email : {{ current_user.email }}
+        </p>
+        <a class="btn btn-outline-success btn-sm" href="{{ url_for('update_user') }}">Update</a>
+        <a class="btn btn-outline-danger btn-sm" href="{{ url_for('logout') }}">Logout</a>
+    </section>
+
+    {% if page == 'bills' %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('users') }}" class="nav-link text-dark">Users</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bills') }}" class="nav-link text-dark active">Current Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('vehicles') }}" class="nav-link text-dark">All Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('vehicles') }}" class="nav-link text-dark">Vehicles</a></li>
+        </ul>
+    </section>
+    {% elif page == 'users' %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('users') }}" class="nav-link text-dark active">Users</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bills') }}" class="nav-link text-dark">Current Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bill_history') }}" class="nav-link text-dark">All Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('vehicles') }}" class="nav-link text-dark">Vehicles</a></li>
+        </ul>
+    </section>
+    {% elif page == 'vehicles' %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('users') }}" class="nav-link text-dark">Users</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bills') }}" class="nav-link text-dark">Current Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bill_history') }}" class="nav-link text-dark">All Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('vehicles') }}" class="nav-link text-dark active">Vehicles</a></li>
+        </ul>
+    </section>
+    {% elif page == 'history' %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('users') }}" class="nav-link text-dark">Users</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bills') }}" class="nav-link text-dark">Current Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bill_history') }}" class="nav-link text-dark active">All Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('vehicles') }}" class="nav-link text-dark">Vehicles</a></li>
+        </ul>
+    </section>
+    {% else %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('users') }}" class="nav-link text-dark">Users</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bills') }}" class="nav-link text-dark">Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('bill_history') }}" class="nav-link text-dark">All Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('vehicles') }}" class="nav-link text-dark">Vehicles</a></li>
+        </ul>
+    </section>
+    {% endif %}
+    {% block admin %}{% endblock %}
+</div>
+
+{% endblock content %}

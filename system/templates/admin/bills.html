@@ -1,0 +1,40 @@
+{% extends "layouts/admin.html" %}
+
+{% block admin %}
+
+<!-- Bills -->
+<section id="Bill-section" class="bg-light opacity-50 rounded p-2 m-1">
+    <h3 class="p-0 m-0">Bill</h3>
+    <hr class="p-0 m-0 pb-1">
+    {% for bill in bills %}
+        {% if bill.bill_status != 'Payed' %}
+            <div class="text-start border border-secondary rounded p-2 m-2">
+                Bill Id : {{ bill.bill_id }} <br>
+                Owner : {{ bill.user.username }} <br>
+                {% if bill.bill_status == "Pending" %}
+                Bill Status : <span class="badge bg-danger text-wrap">{{ bill.bill_status }}</span><br>
+                {% else %}
+                Bill Status : <span class="badge bg-warning text-wrap">{{ bill.bill_status }}</span><br>
+                {% endif%}
+                Vehicle Id : {{ bill.vehicle_id }} <br>
+                Bill Date : {{ bill.bill_date.strftime('%Y-%m-%d') }} <br>
+                Time : {{ bill.bill_time }} Min.<br>
+                Amount : {{ "%.2f ₹"|format(bill.bill_amount) }} <br>
+                <div class="d-flex flex-row">
+                    <!-- Approve -->
+                    {% if bill.bill_status == 'Unapproved' %}
+                        <form action="{{ url_for('pay', bill_id=bill.bill_id) }}" class="mx-1" method="post">
+                            <input
+                                class="btn btn-outline-success btn-sm inline"
+                                type="submit"
+                                value="Approve"
+                            >
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</section>
+ 
+{% endblock admin %}

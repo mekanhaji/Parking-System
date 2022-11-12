@@ -1,0 +1,23 @@
+{% extends "layouts/profile.html" %}
+
+{% block user %}
+
+<!-- Bill Section -->
+<section id="Bill-section" class="bg-light opacity-50 rounded p-2 m-1">
+    <h3 class="p-0 m-0">Bill</h3>
+    <hr class="p-0 m-0 pb-1">
+    {% for bill in bills %}
+        {% if bill.bill_status == 'Payed' %}
+        <div class="text-start border border-secondary rounded p-2 m-2">
+            Bill Id : {{ bill.bill_id }} <br>
+            Vehicle Id : {{ bill.vehicle_id }} <br>
+            Bill Status : <span class="badge bg-success text-wrap">{{ bill.bill_status }}</span><br>
+            Bill Date : {{ bill.bill_date.strftime('%Y-%m-%d') }} <br>
+            Time : {{ bill.bill_time }} Min.<br>
+            Amount : {{ "%.2f ₹"|format(bill.bill_amount) }} <br>
+        </div>
+        {% endif %}
+    {% endfor %}
+</section>
+
+{% endblock user %}

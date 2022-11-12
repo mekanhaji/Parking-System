@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="bg-light opacity-50 rounded text-center p-2">Hello, {{ current_user.username }}🖐</h2>
+
+<div class="d-grid gap-2">
+    <section id="user-section" class="bg-light opacity-50 rounded p-2 m-1">
+        <h3 class="p-0 m-0">Personal Detail</h3>
+        <hr class="p-0 m-0 pb-1">
+        <p class="text-start">
+            Username : {{ current_user.username }}<br>
+            Email : {{ current_user.email }}
+        </p>
+        <a class="btn btn-outline-success btn-sm" href="{{ url_for('update_user') }}">Update</a>
+        <a class="btn btn-outline-danger btn-sm" href="{{ url_for('logout') }}">Logout</a>
+    </section>
+
+    {% if page == 'vehicle' %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_vehicle') }}" class="nav-link text-dark active">Vehicles</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill') }}" class="nav-link text-dark">Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill_history') }}" class="nav-link text-dark">History</a></li>
+        </ul>
+    </section>
+    {% elif page == 'bill' %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_vehicle') }}" class="nav-link text-dark">Vehicles</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill') }}" class="nav-link text-dark active">Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill_history') }}" class="nav-link text-dark">History</a></li>
+        </ul>
+    </section>
+    {% elif page == 'bill history' %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_vehicle') }}" class="nav-link text-dark">Vehicles</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill') }}" class="nav-link text-dark">Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill_history') }}" class="nav-link text-dark active">History</a></li>
+        </ul>
+    </section>
+    {% else %}
+    <section class="bg-light opacity-50 rounded p-2 m-1">      
+        <ul class="nav justify-content-center nav-tabs">
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_vehicle') }}" class="nav-link text-dark">Vehicles</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill') }}" class="nav-link text-dark">Bills</a></li>
+            <li class="nav-item mx-md-5"><a href="{{ url_for('user_bill_history') }}" class="nav-link text-dark">History</a></li>
+        </ul>
+    </section>
+    {% endif %}
+    {% block user %}{% endblock %}
+</div>
+
+{% endblock content %}

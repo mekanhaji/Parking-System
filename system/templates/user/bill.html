@@ -1,0 +1,35 @@
+{% extends "layouts/profile.html" %}
+
+{% block user %}
+
+<!-- Bill Section -->
+<section id="Bill-section" class="bg-light opacity-50 rounded p-2 m-1">
+    <h3 class="p-0 m-0">Bill</h3>
+    <hr class="p-0 m-0 pb-1">
+    {% for bill in bills %}
+        {% if bill.bill_status != 'Payed' %}
+        <div class="text-start border border-secondary rounded p-2 m-2">
+            Bill Id : {{ bill.bill_id }} <br>
+            Vehicle Id : {{ bill.vehicle_id }} <br>
+            {% if bill.bill_status == "Pending" %}
+            Bill Status : <span class="badge bg-danger text-wrap">{{ bill.bill_status }}</span><br>
+            {% else %}
+            Bill Status : <span class="badge bg-warning text-wrap">{{ bill.bill_status }}</span><br>
+            {% endif%}
+            Bill Date : {{ bill.bill_date.strftime('%Y-%m-%d') }} <br>
+            Time : {{ bill.bill_time}} Mins<br>
+            Amount : {{ "%.2f ₹"|format(bill.bill_amount) }} <br>
+            <div class="d-flex flex-row">
+                {% if bill.bill_status == 'Pending' %}
+                <!-- Pay -->
+                <form action="{{ url_for('pay', bill_id=bill.bill_id) }}" class="mx-1" method="post">
+                    <input class="btn btn-outline-success btn-sm mt-1 inline" type="submit" value="Pay">
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</section>
+
+{% endblock user %}

@@ -1,0 +1,43 @@
+{% extends "layouts/profile.html" %}
+
+{% block user %}
+
+<section id="vehicle-section" class="bg-light opacity-50 rounded p-2 m-1">
+    <h3 class="p-0 m-0">Vehicle Detail</h3>
+    <hr class="p-0 m-0 pb-1">
+    {% for vehicle in vehicles %}
+    <div class="text-start border border-secondary rounded p-2 m-2">
+        Vehicle Name : {{ vehicle.name }} <br>
+        Vehicle Number : {{ vehicle.vehicle_number }} <br>
+        {% if vehicle.type == 2 %}
+            Vehicle Type : Two wheeler
+        {% elif vehicle.type == 4 %}
+            Vehicle Type : Four wheeler
+        {% else %}
+            Vehicle Type : large
+        {% endif %}
+        <br>
+        <div class="d-flex flex-row">
+        <!-- Update Vehicle -->
+        <form action="{{ url_for('update_vehicle', vehicle_id=vehicle.vehicle_id) }}" class="mx-1" method="post">
+            <input class="btn btn-outline-success btn-sm mt-1 inline" type="submit" value="Update">
+        </form>
+        <!-- Park Vehicle -->
+        <form action="{{ url_for('park_vehicle', vehicle_id=vehicle.vehicle_id) }}" class="mx-1" method="post">
+            {% if vehicle.slot == [] %}
+            <input class="btn btn-outline-success btn-sm mt-1 inline" type="submit" value="Park">
+            {% else %}
+            <input class="btn btn-outline-success btn-sm mt-1 inline" type="submit" value="Park" disabled>
+            {% endif %}
+        </form>
+        <!-- Remove Vehicle -->
+        <form action="{{ url_for('remove_vehicle', vehicle_id=vehicle.vehicle_id) }}" class="mx-1" method="post">
+            <input class="btn btn-outline-danger btn-sm mt-1 inline" type="submit" value="Remove">
+        </form>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="{{ url_for('vehicle') }}" class="btn btn-outline-success btn-sm">Add Vehicle</a>
+</section>
+
+{% endblock user %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="bg-light opacity-50 rounded text-center p-2">
+    <img width="35" height="35" class="p-0 mb-1" src="{{ url_for('static', filename='icons/ParKing.svg') }}" alt="icons">
+    ParKing Area
+</h1>
+<div class="row">
+    {% for slot in slots %}
+    <div class="col-lg-4 mt-2">
+        <div class="card m-1">
+            <div class="card-header h3 m-1">
+                Slot {{ slot.slot_id }}
+                {% if slot.vehicle.type == 2 %}
+                    <img width="35" height="35" class="position-absolute top-8 end-0 mx-1" src="{{ url_for('static', filename='icons/bike.svg') }}" alt="icons">
+                {% elif slot.vehicle.type == 4 %}
+                    <img width="35" height="35" class="position-absolute top-8 end-0 mx-1" src="{{ url_for('static', filename='icons/car.svg') }}" alt="icons">
+                {% else %}
+                    <img width="35" height="35" class="position-absolute top-8 end-0 mx-1" src="{{ url_for('static', filename='icons/bus.svg') }}" alt="icons">
+                {% endif %}
+            </div>
+            <div class="card-body">
+                Owner : {{ slot.user.username }} <br>
+                Owner Contact Details : {{ slot.user.email }} <br>
+                Vehicle Name : {{ slot.vehicle.name }} <br>
+                Vehicle Number : {{ slot.vehicle.vehicle_number }}
+            </div>
+            <div class="card-footer">
+            <!-- Tack Vehicle -->
+            <form action="{{ url_for('take', slot_id=slot.slot_id) }}" class="mx-1 d-grid gap-2" method="post">
+                {% if slot.user.id == current_user.id %}
+                <input class="btn btn-outline-info btn-sm mt-1 inline" type="submit" value="Take">
+                {% else %}
+                <input class="btn btn-outline-info btn-sm mt-1 inline" type="submit" value="Take" disabled>
+                {% endif %}
+            </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

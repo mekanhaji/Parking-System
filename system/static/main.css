@@ -1,0 +1,35 @@
+.bg-img {
+    background: url(bgImg1.jpg);
+    /* Full height */
+    height: 100vh;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.card { background-color: rgba(245, 245, 245, 0.5); }
+.card-header, .card-footer { opacity: 1}
+
+input[type="text"],
+input[type="password"],
+input[type="checkbox"],
+input[type="number"],
+select,
+option {
+    background-color: rgba(245, 245, 245, 0.5);
+    opacity: 1;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="checkbox"]:focus {
+    background-color: rgba(245, 245, 245, 0.5);
+    opacity: 1;
+}
+
+.toggle-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }

@@ -1,0 +1,38 @@
+{% extends "layouts/admin.html" %}
+
+{% block admin %}
+
+<!-- User Section -->
+<section id="vehicle-section" class="bg-light opacity-50 rounded p-2 m-1">
+    <h3 class="p-0 m-0">All User Detail</h3>
+    <hr class="p-0 m-0 pb-1">
+    {% for user in users %}
+    <div class="text-start border border-secondary rounded p-2 m-2">
+        User id : {{ user.id }} 
+        {% if user.isAdmin %}
+        ⭐
+        {% endif %}<br>
+        User Name : {{ user.username }} <br>
+        User email : {{ user.email }} <br>
+        <div class="d-flex flex-row">
+        <!-- Remove User -->
+        <form action="{{ url_for('remove', id=user.id) }}" class="mx-1" method="post">
+            <input class="btn btn-outline-danger btn-sm mt-1 inline" type="submit" value="Remove">
+        </form>
+        {% if not user.isAdmin %}
+        <!-- pramote user -->
+        <form action="{{ url_for('add_admin', id=user.id, req=1) }}" class="mx-1" method="post">
+            <input class="btn btn-outline-warning btn-sm mt-1 inline" type="submit" value="Pramote">
+        </form>
+        {% elif user.username != "admin"%}
+        <!-- pramote user -->
+        <form action="{{ url_for('add_admin', id=user.id, req=0) }}" class="mx-1" method="post">
+            <input class="btn btn-outline-warning btn-sm mt-1 inline" type="submit" value="Demote">
+        </form>
+        {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock admin %}

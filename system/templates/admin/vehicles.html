@@ -1,0 +1,31 @@
+{% extends "layouts/admin.html" %}
+
+{% block admin %}
+
+<!-- Vehicle Section -->
+<section id="vehicle-section" class="bg-light opacity-50 rounded p-2 m-1">
+    <h3 class="p-0 m-0">All Vehicle Detail</h3>
+    <hr class="p-0 m-0 pb-1">
+    {% for vehicle in vehicles %}
+    <div class="text-start border border-secondary rounded p-2 m-2">
+        Vehicle Name : {{ vehicle.name }} <br>
+        User Name : {{ vehicle.user.username }} <br>
+        Vehicle Number : {{ vehicle.vehicle_number }} <br>
+        {% if vehicle.type == 2 %}
+            Vehicle Type : Two wheeler
+        {% elif vehicle.type == 4 %}
+            Vehicle Type : Four wheeler
+        {% else %}
+            Vehicle Type : large
+        {% endif %}
+        <br>
+        <div class="d-flex flex-row">
+        <!-- Remove Vehicle -->
+        <form action="{{ url_for('remove_vehicle', vehicle_id=vehicle.vehicle_id) }}" class="mx-1" method="post">
+            <input class="btn btn-outline-danger btn-sm mt-1 inline" type="submit" value="Remove">
+        </form>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock admin %}

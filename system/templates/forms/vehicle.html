@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="mt-4 card mw-100">
+  <!-- Header -->
+  <h1 class="card-header">{{ title }}</h1>
+  <!-- /Header -->
+  <!-- Form -->
+  <form action="" method="post" class="needs-validation">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group p-3">
+        <div class="form-group">
+            {{ form.valicle_name.label(class="form-control-label") }}
+            {% if form.valicle_name.errors %}
+                {{ form.valicle_name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.valicle_name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.valicle_name(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.valicle_number.label(class="form-control-label") }}
+            {% if form.valicle_number.errors %}
+                {{ form.valicle_number(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.valicle_number.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.valicle_number(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.valicle_type.label(class="form-control-label") }}
+          {% if form.valicle_type.errors %}
+              {{ form.valicle_type(class="form-control form-control-lg is-invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in form.valicle_type.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+          {% else %}
+              {{ form.valicle_type(class="form-control form-control-lg") }}
+          {% endif %}
+      </div>
+    </fieldset>
+    <div class="form-group card-footer d-grid gap-2">
+      {{ form.submit(class="btn btn-outline-success") }}
+    </div>
+  </form>
+  <!-- /Form -->
+</div>
+
+
+{% endblock content %}
