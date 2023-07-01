@@ -35,7 +35,26 @@ In the project directory, install the required dependencies by running the follo
 ```bash
 pip install -r requirements.txt
 ```
-
+OR
+```bash
+pip install Flask Flask-SQLAlchemy Flask-WTF flask-login email_validator
+```
+For individual...
+```bash
+pip install Flask
+```
+```bash
+pip install -U Flask-SQLAlchemy
+```
+```bash
+pip install -U Flask-WTF
+```
+```bash
+pip install flask-login
+```
+```bash
+pip install email_validator
+```
 ### Configure the Database:
 In the project directory, locate the configuration file (e.g., config.py) and ensure that the database settings are correctly configured. This includes specifying the database name, location, and any other relevant settings.
 
