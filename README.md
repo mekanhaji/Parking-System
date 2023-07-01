@@ -1,5 +1,5 @@
 # Project Overview
-> Our project aims to develop a comprehensive parking management system using Flask, SQLite, and Bootstrap. The system will provide an efficient and user-friendly solution for managing parking spaces, vehicle records, and payments. By leveraging the power of Flask's web framework, the flexibility of SQLite as a lightweight database, and the responsive design capabilities of Bootstrap, we will create a seamless parking experience for both administrators and users.
+> This project aims to develop a comprehensive parking management system using Flask, SQLite, and Bootstrap. The system will provide an efficient and user-friendly solution for managing parking spaces, vehicle records, and payments. By leveraging the power of Flask's web framework, the flexibility of SQLite as a lightweight database, and the responsive design capabilities of Bootstrap, we will create a seamless parking experience for both administrators and users.
 
 # Technology Stack
 - `Flask`: A Python-based web framework for building the server-side logic and RESTful APIs.
