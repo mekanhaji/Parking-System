@@ -27,25 +27,3 @@ The parking system will incorporate a secure payment gateway, enabling users to 
 
 ### Reporting and Analytics
 Administrators will have access to comprehensive reports and analytics, including parking usage statistics, revenue generation, and historical data. These insights will help make informed decisions and optimize parking management strategies.
-
-Flask App
-
-```bash
-pip install Flask Flask-SQLAlchemy Flask-WTF flask-login email_validator
-```
-
-```bash
-pip install Flask
-```
-```bash
-pip install -U Flask-SQLAlchemy
-```
-```bash
-pip install -U Flask-WTF
-```
-```bash
-pip install flask-login
-```
-```bash
-pip install email_validator
-```
